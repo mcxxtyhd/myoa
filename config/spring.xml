@@ -26,22 +26,24 @@
 		<property name="user" value="${jdbc.user}" />
 		<property name="password" value="${jdbc.password}" />
 	</bean>
-	<!-- 2.mybatis的SqlSessionFactory -->
+	
+	<!-- mybatis的SqlSessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		
 	</bean>
-	<!-- 3.mybatis自动扫描加载的SQL映射文件 /接口 MapperScannerConfigurer -->
+	<!-- mybatis自动扫描加载的SQL映射文件 /接口 MapperScannerConfigurer -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.oa.mapper" />
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
-	<!-- 4.事务管理 -->
+	<!-- 事务管理 -->
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-
+	<!-- 使用声明式事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
 
 </beans>
