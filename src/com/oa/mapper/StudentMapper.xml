@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oa.mapper.StudentMapper">
+	
+	<insert id="insertStudent"  parameterType="Student" keyProperty="id"  useGeneratedKeys="true">
+		 insert into Student(login_name)  values(#{login_name})
+	</insert>
+	
+	<select id="findAll" resultMap="myLoginMap">
+		select * from orders
+	</select>
+	
+	<resultMap type="Student" id="myLoginMap">
+		<id column="id"  property="id"/>
+		<result column="login_name"  property="login_name"/>
+		<result column="name"  property="name"/>
+		<result column="school"  property="school"/>
+		<result column="birthday"  property="birthday"/>
+	</resultMap>
+	
+</mapper>
